@@ -68,9 +68,26 @@ public class AlgorithmAnalyzer {
 
     // -------------------------------- Member 4: Quick Sort --------------------------------
     static class QuickSort {
-
-        
+    static void quick(int[] a, int l, int r) {
+        if (l < r) {
+            int p = a[r], i = l - 1;
+            for (int j = l; j < r; j++) if (a[j] <= p) {
+                i++; int t = a[i]; a[i] = a[j]; a[j] = t;
+            }
+            int t = a[i + 1]; a[i + 1] = a[r]; a[r] = t;
+            int pivot = i + 1;
+            quick(a, l, pivot - 1); quick(a, pivot + 1, r);
+        }
     }
+
+    static Result test(int[] arr, int size) {
+        int[] a = Arrays.copyOf(arr, arr.length);
+        long start = System.nanoTime();
+        quick(a, 0, a.length - 1);
+        long end = System.nanoTime();
+        return new Result("Quick Sort", size, (end - start) / 1e6, true);
+    }
+}
 
     // -------------------------------- Integration Menu --------------------------------
     public static void main(String[] args) {
@@ -122,8 +139,11 @@ public class AlgorithmAnalyzer {
                     break;
 
                 case "5":
-                    // TODO: Member 4 call Quick Sort for all 3 sizes
-                    break;
+                    System.out.println("--- Quick Sort Results ---");
+                        print(QuickSort.test(arr100, 100));
+                        print(QuickSort.test(arr500, 500));
+                        print(QuickSort.test(arr1000, 1000));
+                        break;
 
                 case "0":
                         System.out.println("Exiting Program...");
