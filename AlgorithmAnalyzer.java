@@ -70,9 +70,19 @@ public class AlgorithmAnalyzer {
     }
 
     // -------------------------------- Member 3: Bubble Sort --------------------------------
-    static class BubbleSort {
-       
+   static class BubbleSort {
+    static Result test(int[] arr, int size) {
+        int[] a = Arrays.copyOf(arr, arr.length);
+        long start = System.nanoTime();
+        for (int i = 0; i < a.length - 1; i++)
+            for (int j = 0; j < a.length - i - 1; j++)
+                if (a[j] > a[j + 1]) {
+                    int t = a[j]; a[j] = a[j + 1]; a[j + 1] = t;
+                }
+        long end = System.nanoTime();
+        return new Result("Bubble Sort", size, (end - start) / 1e6, true);
     }
+}
 
     // -------------------------------- Member 4: Quick Sort --------------------------------
     static class QuickSort {
@@ -152,8 +162,11 @@ public class AlgorithmAnalyzer {
 
 
                 case "4":
-                    // TODO: Member 3 call Bubble Sort for all 3 sizes
-                    break;
+                    System.out.println("--- Bubble Sort Results ---");
+                        print(BubbleSort.test(arr100, 100));
+                        print(BubbleSort.test(arr500, 500));
+                        print(BubbleSort.test(arr1000, 1000));
+                        break;
 
                 case "5":
                     System.out.println("--- Quick Sort Results ---");
