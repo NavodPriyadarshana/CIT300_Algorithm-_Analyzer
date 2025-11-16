@@ -5,7 +5,7 @@
 - Yasiru – Linear Search
 - Navod – Binary Search
 - Pulindu – Bubble Sort
-- Malisha – Quick Sort + Integration
+- Malisha – Quick Sort 
 
 ---
 
