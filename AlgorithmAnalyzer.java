@@ -34,8 +34,16 @@ public class AlgorithmAnalyzer {
 
     // -------------------------------- Member 1: Linear Search --------------------------------
     static class LinearSearch {
-       
+        static Result test(int[] arr, int target, int size) {
+            long start = System.nanoTime();
+            boolean found = false;
+            for (int num : arr) {
+                if (num == target) { found = true; break; }
+        }
+            long end = System.nanoTime();
+            return new Result("Linear Search", size, (end - start) / 1e6, found);
     }
+}
 
     // -------------------------------- Member 2: Binary Search --------------------------------
     static class BinarySearch {
@@ -115,8 +123,17 @@ public class AlgorithmAnalyzer {
 
 
                 case "2":
-                    // TODO: Member 1 call Linear Search for all 3 sizes
-                    break;
+                    if (arr100 == null) {
+                            System.out.println("Please generate arrays first.");
+                            break;
+                        }
+                        System.out.print("Enter target to search: ");
+                        int t1 = Integer.parseInt(sc.nextLine());
+                        System.out.println("--- Linear Search Results ---");
+                        print(LinearSearch.test(arr100, t1, 100));
+                        print(LinearSearch.test(arr500, t1, 500));
+                        print(LinearSearch.test(arr1000, t1, 1000));
+                        break;
 
                 case "3":
                     if (arr100 == null) {
