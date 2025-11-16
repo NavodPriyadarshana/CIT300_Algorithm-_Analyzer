@@ -40,7 +40,25 @@ public class AlgorithmAnalyzer {
     // -------------------------------- Member 2: Binary Search --------------------------------
     static class BinarySearch {
 
-        
+        static int binarySearch(int[] arr, int target) {
+            int left = 0, right = arr.length - 1;
+            while (left <= right) {
+                int mid = (left + right) / 2;
+                if (arr[mid] == target) return mid;
+                if (arr[mid] < target) left = mid + 1;
+                else right = mid - 1;
+            }
+            return -1;
+        }
+
+        static Result test(int[] arr, int target, int size) {
+            int[] sorted = Arrays.copyOf(arr, arr.length);
+            Arrays.sort(sorted);
+            long start = System.nanoTime();
+            boolean found = binarySearch(sorted, target) != -1;
+            long end = System.nanoTime();
+            return new Result("Binary Search", size, (end - start) / 1e6, found);
+        }
     }
 
     // -------------------------------- Member 3: Bubble Sort --------------------------------
@@ -84,8 +102,19 @@ public class AlgorithmAnalyzer {
                     break;
 
                 case "3":
-                    
-                    break;
+                    if (arr100 == null) {
+                            System.out.println("Please generate arrays first.");
+                            break;
+                        }
+                        System.out.print("Enter target to search: ");
+                        int t2 = Integer.parseInt(sc.nextLine());
+                        System.out.println("--- Binary Search Results ---");
+                        print(BinarySearch.test(arr100, t2, 100));
+                        print(BinarySearch.test(arr500, t2, 500));
+                        print(BinarySearch.test(arr1000, t2, 1000));
+                        break;
+
+
 
 
                 case "4":
